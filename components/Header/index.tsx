@@ -2,6 +2,7 @@
 
 import LanguageSelector from '@/components/Header/LanguageSelector';
 import NotificationStrip from '@/components/Header/NotificationStrip';
+import PostLanguageSelector from '@/components/Header/PostLanguageSelector';
 import type { CommonLayoutQuery } from '@/graphql/types/graphql';
 import type { GlobalPageProps } from '@/utils/globalPageProps';
 import { buildUrl } from '@/utils/globalPageProps';
@@ -9,7 +10,6 @@ import { isEmptyDocument } from 'datocms-structured-text-utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import PostLanguageSelector from './PostLanguageSelector';
 
 type Menu = {
   id: string;
@@ -22,15 +22,19 @@ type Menu = {
 type Props = {
   globalPageProps: GlobalPageProps;
   data: CommonLayoutQuery;
-  isPostPage?: boolean;
-  currentSlug?: string;
+  isPostPage: boolean;
+  currentSlug: string;
 };
 
+/**
+ * Header component used across all pages in the common layout
+ * Now uses explicit typing for route information passed from PostRouteDetector
+ */
 const Header = ({
   globalPageProps,
   data,
-  isPostPage = false,
-  currentSlug = '',
+  isPostPage,
+  currentSlug,
 }: Props) => {
   const menuData: Menu[] = [];
 
@@ -225,18 +229,21 @@ const Header = ({
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                {isPostPage ? (
-                  <PostLanguageSelector
-                    globalPageProps={globalPageProps}
-                    languages={data._site.locales}
-                    currentSlug={currentSlug}
-                  />
-                ) : (
-                  <LanguageSelector
-                    globalPageProps={globalPageProps}
-                    languages={data._site.locales}
-                  />
-                )}
+                <div className="hidden lg:flex">
+                  {/* Display language selectors based on whether it's a post page */}
+                  {isPostPage ? (
+                    <PostLanguageSelector
+                      globalPageProps={globalPageProps}
+                      languages={data._site.locales}
+                      currentSlug={currentSlug}
+                    />
+                  ) : (
+                    <LanguageSelector
+                      globalPageProps={globalPageProps}
+                      languages={data._site.locales}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
