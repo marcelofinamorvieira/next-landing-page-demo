@@ -15,7 +15,7 @@ import type { PageProps, Query, Variables } from './meta';
  * IMPORTANT: This localized slug approach is implemented as a demonstration
  * and only applies to the posts page in this project. Other pages use different
  * localization approaches.
- * 
+ *
  * The implementation shows how to handle locale-specific URL slugs where the same
  * content might have different URL paths in different languages.
  */
@@ -35,9 +35,9 @@ export async function generateStaticParams() {
 
   for (const locale of locales) {
     // Create variables that will work with PostStaticParamsDocument
-    // We need to cast our document to accept the locale parameters 
+    // We need to cast our document to accept the locale parameters
     const data = await queryDatoCMS<
-      { allPosts: PostWithLocalizedSlugs[] }, 
+      { allPosts: PostWithLocalizedSlugs[] },
       { locale: SiteLocale; fallbackLocale: SiteLocale[] }
     >(PostStaticParamsDocument as DocumentNode, {
       locale: locale as SiteLocale,

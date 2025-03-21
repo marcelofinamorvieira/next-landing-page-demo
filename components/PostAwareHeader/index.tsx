@@ -27,7 +27,7 @@ const PostAwareHeader = ({ globalPageProps, data }: Props) => {
     const patternString = `^/${locale}/posts/([^/]+)$`;
     const isPostPattern = new RegExp(patternString);
     const matchesPostPattern = isPostPattern.test(pathname);
-    
+
     setIsPostPage(matchesPostPattern);
 
     if (matchesPostPattern) {

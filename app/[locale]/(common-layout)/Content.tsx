@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
-import PostAwareHeader from '../../../components/PostAwareHeader';
 import type { ContentPage } from '@/components/WithRealTimeUpdates/types';
+import PostAwareHeader from '../../../components/PostAwareHeader';
 import type { PageProps, Query } from './meta';
 
 /**
@@ -15,10 +15,7 @@ const Content: ContentPage<PageProps, Query> = ({
 }) => {
   return (
     <>
-      <PostAwareHeader 
-        globalPageProps={globalPageProps} 
-        data={data}
-      />
+      <PostAwareHeader globalPageProps={globalPageProps} data={data} />
       {children}
       <Footer globalPageProps={globalPageProps} data={data} />
     </>

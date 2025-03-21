@@ -8,7 +8,7 @@ import { NextResponse } from 'next/server';
 /**
  * IMPORTANT: This API endpoint is part of a demonstration for handling localized slugs
  * and is only used by the posts page in this project.
- * 
+ *
  * This endpoint retrieves all available localized slugs for a specific post,
  * allowing the UI to offer language switching while maintaining the correct URL
  * path for each language variant of the post.
@@ -62,13 +62,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const data = await queryDatoCMS<GetPostBySlugQueryResult, GetPostBySlugVariables>(
-      GetPostBySlugDocument as DocumentNode,
-      {
-        slug,
-        locale,
-      },
-    );
+    const data = await queryDatoCMS<
+      GetPostBySlugQueryResult,
+      GetPostBySlugVariables
+    >(GetPostBySlugDocument as DocumentNode, {
+      slug,
+      locale,
+    });
 
     return NextResponse.json(data);
   } catch (error) {

@@ -30,12 +30,7 @@ type Props = {
  * Header component used across all pages in the common layout
  * Now uses explicit typing for route information passed from PostRouteDetector
  */
-const Header = ({
-  globalPageProps,
-  data,
-  isPostPage,
-  currentSlug,
-}: Props) => {
+const Header = ({ globalPageProps, data, isPostPage, currentSlug }: Props) => {
   const menuData: Menu[] = [];
 
   data.layout?.menu.map((item) => {
